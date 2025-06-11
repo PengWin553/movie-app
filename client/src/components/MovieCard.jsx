@@ -12,9 +12,9 @@ const MovieCard = ({ movie }) => {
   return (
     <div className="movie-card">
       {/* Movie poster section */}
-      <div className="movie-poster">
+      <div className="movie-poster" style={{border: '1px solid white', padding: '1rem', borderRadius: '0.5rem'}}>
         {/* Display the movie's poster image using the 'url' from the movie prop */}
-        <img src={movie.url} alt={movie.title} />
+        <img src={movie.url} alt={movie.title} style={{height: '10rem'}}/>
         
         {/* Overlay that appears on top of the poster (usually for interactive elements) */}
         <div className="movie-overlay">
