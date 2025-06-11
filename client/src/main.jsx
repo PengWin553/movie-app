@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'; // Importing ReactDOM's createRoo
 // Importing BrowserRouter from react-router-dom to enable routing
 import { BrowserRouter } from "react-router-dom"; // ✅ Step 1 in using React Router
 
-import './index.css';
+import './css/index.css';
 import App from './App.jsx'; // Importing the root App component
 
 // Rendering the app into the root DOM node

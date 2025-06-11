@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 // Importing the MovieCard component for displaying individual movie info
 import MovieCard from '../components/MovieCard'
+import "../css/Home.css"
 
 const Home = () => {
 

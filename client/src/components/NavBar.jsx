@@ -1,8 +1,9 @@
 import React from 'react';
 // Importing Link component to enable navigation without page refresh
 import { Link } from "react-router-dom"; // ✅ Step 2 in using React Router
+import '../css/Navbar.css'
 
-const NavBar = () => {
+const Navbar = () => {
   return (
     <nav className="navbar">
         {/* Brand/logo link pointing to the Home route */}
@@ -22,4 +23,4 @@ const NavBar = () => {
   );
 }
 
-export default NavBar;
+export default Navbar;

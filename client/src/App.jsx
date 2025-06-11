@@ -1,15 +1,16 @@
-import './App.css'
+import './css/App.css'
 import Favorites from './pages/Favorites'
 import Home from './pages/Home'
 import { Routes, Route } from 'react-router-dom'
-import NavBar from './components/NavBar'
+import Navbar from './components/Navbar'
+import "../src/css/App.css"
 
 // Main App component
 function App() {
 
   return (
     <div>
-      <NavBar />
+      <Navbar />
 
       <main className="main-content">
         <Routes>

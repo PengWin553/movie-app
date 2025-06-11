@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/MovieCard.css'
 
 const MovieCard = ({ movie }) => {
 
@@ -7,10 +8,10 @@ const MovieCard = ({ movie }) => {
   }
 
   return (
-    <div className="movie-card" style={{border: '1px solid white', padding: '1rem', margin: '1rem', borderRadius: '0.5rem'}}>
+    <div className="movie-card">
       {/* Movie poster section */}
       <div className="movie-poster">
-        <img src={movie.url} alt={movie.title} style={{height: '10rem'}}/>
+        <img src={movie.url} alt={movie.title}/>
         
         <div className="movie-overlay">
           <button className='favorite-btn' onClick={onFavoriteClick}>
