@@ -1,24 +1,28 @@
+// Importing the CSS file for styling the App component
 import './App.css'
 
+// Main App component
 function App() {
 
   return (
-    // A fragment acts as a the parent container. A component only allows one parent container
+    // React Fragment used as a wrapper since React components must return a single enclosing element
     <>
-      {/* The dummy component used twice */}
-      <Text />
-      <Text />
+      {/* Rendering the Text component with different content props */}
+      <Text content="Hello" />
+      <Text content="Sup?" />
     </>
   )
 }
 
-// dummy component
-function Text(){
+// Text component: A reusable component that accepts a 'content' prop and displays it inside a paragraph
+function Text({ content }) {
   return (
     <div>
-      <p>Hello World!</p>
+      {/* Displaying the content passed from the parent App component */}
+      <p>{content}</p>
     </div>
   )
 }
 
+// Exporting the App component as the default export of this file
 export default App
