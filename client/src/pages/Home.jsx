@@ -1,8 +1,11 @@
-import React from 'react'
+// Importing React and necessary hooks
+import React, { useState } from 'react'
+// Importing the MovieCard component for displaying individual movie info
 import MovieCard from '../components/MovieCard'
 
 const Home = () => {
 
+    // Array of movie objects (mock/static data)
     const movies = [
         {
             id: 1,
@@ -30,13 +33,42 @@ const Home = () => {
         },
     ]
 
-  return (
-    <div className='home'>
-        <div className="movies-grid">
-            {movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)}
+    // State to store the user's search query
+    const [searchQuery, setSearchQuery] = useState("");
+
+    // Function to handle the form submission event
+    const handleSearch = (e) => {
+        e.preventDefault(); // Prevents page reload when form is submitted
+        alert(searchQuery); // Displays the current search query in an alert (for testing)
+        setSearchQuery("Search for another movie..."); // Optionally updates the input field
+    }
+
+    return (
+        <div className='home'>
+
+            {/* Search form */}
+            <form onSubmit={handleSearch} className='search-form'>
+                <input 
+                    type="text" 
+                    placeholder='Search for movies...' 
+                    className='search-input' 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)} // Updates state as user types
+                />
+                <button type='submit' className='search-button'>Search</button>
+            </form>
+
+            {/* Movie cards displayed in a grid */}
+            <div className="movies-grid">
+                {movies.map((movie) => (
+                    // Render MovieCard only if movie title starts with search query (case-insensitive)
+                    movie.title.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
+                    <MovieCard movie={movie} key={movie.id} />
+                ))}
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
+// Exporting Home component as default
 export default Home
