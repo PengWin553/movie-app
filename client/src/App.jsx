@@ -1,26 +1,20 @@
-// Importing the CSS file for styling the App component
+// Importing the CSS file for global styling
 import './App.css'
+
+// Importing the MovieCard component from the components directory
+import MovieCard from './components/MovieCard'
 
 // Main App component
 function App() {
 
   return (
-    // React Fragment used as a wrapper since React components must return a single enclosing element
+    // React Fragment used as a wrapper because JSX elements must be wrapped in a single parent
     <>
-      {/* Rendering the Text component with different content props */}
-      <Text content="Hello" />
-      <Text content="Sup?" />
+      {/* Rendering two MovieCard components with different movie props */}
+      {/* outer curly brace denotes a variable, inner curly brace denotes an object  */}
+      <MovieCard movie={{ title: "Cat's Movie", release_date: "2024" }} />
+      <MovieCard movie={{ title: "Mae's Movie", release_date: "2025" }} />
     </>
-  )
-}
-
-// Text component: A reusable component that accepts a 'content' prop and displays it inside a paragraph
-function Text({ content }) {
-  return (
-    <div>
-      {/* Displaying the content passed from the parent App component */}
-      <p>{content}</p>
-    </div>
   )
 }
 
