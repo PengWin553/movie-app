@@ -7,7 +7,7 @@ const MovieCard = ({ movie }) => {
   }
 
   return (
-    <div className="movie-card" style={{border: '1px solid white', padding: '1rem', borderRadius: '0.5rem'}}>
+    <div className="movie-card" style={{border: '1px solid white', padding: '1rem', margin: '1rem', borderRadius: '0.5rem'}}>
       {/* Movie poster section */}
       <div className="movie-poster">
         <img src={movie.url} alt={movie.title} style={{height: '10rem'}}/>
