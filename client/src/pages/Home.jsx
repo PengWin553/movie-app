@@ -1,48 +1,56 @@
 // Importing React and necessary hooks
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // Importing the MovieCard component for displaying individual movie info
 import MovieCard from '../components/MovieCard'
+import { getPopularMovies, searchMovies } from '../services/api'
 import "../css/Home.css"
 
 const Home = () => {
 
-    // Array of movie objects (mock/static data)
-    const movies = [
-        {
-            id: 1,
-            title: "Bocchi the Rock",
-            release_date: "2023",
-            url: 'https://i.pinimg.com/originals/0e/0a/f3/0e0af37e3cc1d48ef19bd51973c49719.jpg',
-        },
-        {
-            id: 2,
-            title: "Miss Kobayashi's Dragon Maid",
-            release_date: "2017",
-            url: 'https://vignette.wikia.nocookie.net/maid-dragon/images/5/52/Kobayashi_5.png/revision/latest?cb=20170315190544',
-        },
-        {
-            id: 3,
-            title: "Rock is a Lady's Modesty",
-            release_date: "2025",
-            url: 'https://static.animecorner.me/2025/03/1741257301-bfbff2c8216c6cdc6db7b290a2df5e64.jpg',
-        },
-        {
-            id: 4,
-            title: "Minecraft the Movie",
-            release_date: "2025",
-            url: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2022/08/Minecraft-Movie-Temp-Poster.jpg',
-        },
-    ]
+    const [movies, setMovies] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     // State to store the user's search query
     const [searchQuery, setSearchQuery] = useState("");
 
     // Function to handle the form submission event
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault(); // Prevents page reload when form is submitted
-        alert(searchQuery); // Displays the current search query in an alert (for testing)
-        setSearchQuery("Search for another movie..."); // Optionally updates the input field
+        
+        if (!searchQuery.trim()) return; // prevents loading results with white space input
+        if (loading) return; // prevents search function when it's already loading results
+
+        setLoading(true); // gives an indicator that the page is loading results
+
+        try {
+            const searchResults = await searchMovies(searchQuery);
+            setMovies(searchResults);
+            setError(null);
+        } catch (err) {
+            console.log(err);
+            setError("Failed to search movies...");
+        } finally {
+            setLoading(false);
+        }
+
     }
+
+    useEffect(() => {
+        const loadPopularMovies = async () => {
+            try {
+                const popularMovies = await getPopularMovies();
+                setMovies(popularMovies);
+            } catch (err) {
+                console.log(err);
+                setError("Failed to load movies...");
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        loadPopularMovies();
+    }, [])
 
     return (
         <div className='home'>
